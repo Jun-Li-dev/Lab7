@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Quiz question</title>
+</head>
+<body>
+    <h1>Quiz question</h1>
+
+    <div>
+        <p>Question <span th:text="${questionNumber}">1</span>:
+            <strong th:text="${questionText}">Sample question</strong>
+        </p>
+    </div>
+
+    <p th:text="${feedback}"></p>
+    <p>Score: <span th:text="${score}">0</span></p>
+
+    <!-- Quiz form -->
+    <form th:action="@{/get_question}" method="post">
+        <input type="radio" id="trueOption" name="answer" value="true">
+        <label for="trueOption">True</label><br>
+
+        <input type="radio" id="falseOption" name="answer" value="false">
+        <label for="falseOption">False</label><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Start over button -->
+    <form th:action="@{/get_question}" method="post" style="margin-top:20px;">
+        <input type="hidden" name="answer" value="reset" />
+        <button type="submit">Start Over</button>
+    </form>
+</body>
+</html>
